@@ -1,5 +1,5 @@
 import '../css/Sidebar.css'
-import { SidebarData } from './SidebarData'
+import { SidebarData } from './SidebarRows'
 
 const Sidebar = () => {
     return (

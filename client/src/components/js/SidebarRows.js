@@ -7,7 +7,7 @@ export const SidebarData = [
     {
         icon: <HomeIcon />,
         title: "Home",
-        link: "/home"
+        link: "/"
     },
     {
         icon: <CalculateIcon />,
