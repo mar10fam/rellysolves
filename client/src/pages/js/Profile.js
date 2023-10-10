@@ -2,15 +2,15 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
 const Profile = () => {
-  const { user, setUser } = useContext(AuthContext);
+  const { profile, setProfile } = useContext(AuthContext);
 
   const handleSignOut = (event) => {
-    setUser({});
-    console.log(user)
+    setProfile({});
   }
 
   return (
     <div>
+      <h3>Hello {profile.name}</h3>
       <button onClick={(e) => handleSignOut(e)}>Sign Out</button>
     </div>
   )

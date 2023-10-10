@@ -1,34 +1,47 @@
-import React, { useEffect, useContext } from 'react'
-import jwt_decode from "jwt-decode";
+import React, { useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useGoogleLogin } from '@react-oauth/google';
 import { AuthContext } from '../../context/AuthContext';
+import Axios from 'axios';
+import '../css/Login.css';
 
 const Login = () => {
-  const { setUser } = useContext(AuthContext)
+  const { user, setUser } = useContext(AuthContext);
+  const { setProfile } = useContext(AuthContext);
 
-  const handleLogin = (response) => {
-    console.log("encoded JWT ID token: " + response.credential);
-    var userObject = jwt_decode(response.credential);
-    console.log(userObject);
-    setUser(userObject);
-    document.getElementById("signInDiv").hidden = true;
-  }
+  const navigate = useNavigate();
+
+  const login = useGoogleLogin({
+    onSuccess: (codeResponse) => {
+      console.log("onSuccess Response: ", codeResponse)
+      setUser(codeResponse)
+    },
+    onError: (error) => console.log("Login Failed: ", error)
+  });
 
   useEffect(() => {
-    /* global google */
-    google.accounts.id.initialize({
-      client_id: "452686572704-8j9t6tk2am9q371ol6sg32u1a8354nan.apps.googleusercontent.com",
-      callback: handleLogin
-    });
-
-    google.accounts.id.renderButton(
-      document.getElementById("signInDiv"),
-      { theme: "outline", size: "large" }
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+      if(user) {
+        Axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
+          headers: {
+              Authorization: `Bearer ${user.access_token}`,
+              Accept: 'application/json'
+          }
+      }).then((res) => {
+        console.log("Profile Data: ", res)
+        setProfile(res.data);
+        navigate('/')
+      }).catch((err) => {
+        console.log(err);
+      })
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user]);
 
   return (
-    <div id="signInDiv"></div>
+    <div>
+      <h2>Google Login</h2>
+      <button onClick={() => login()}>Sign in with Google</button>
+    </div>
   )
 }
 

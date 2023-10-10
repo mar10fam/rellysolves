@@ -11,23 +11,20 @@ import PrivateRoute from './utils/PrivateRoute';
 
 function App() {
   const [ user, setUser ] = useState({});
+  const [ profile, setProfile ] = useState({});
 
   return (
-    <AuthContext.Provider value = {{ user, setUser }}>
-      <div className="App">
-          <Sidebar />
-          <div className="content">
-            <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/" element={<Home />} />
-              <Route path="/profile" element={<Profile />} />
-
-
-              <Route element={<PrivateRoute />}>
-                <Route path="/topics" element={<Topics />} />
-              </Route>
-            </Routes>
-          </div>
+    <AuthContext.Provider value = {{ user, setUser, profile, setProfile}}>
+      <div className="App">  
+      { Object.keys(profile).length !== 0 && <Sidebar /> }            
+          <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route element={<PrivateRoute />}>
+            <Route id="content" path="/" element={<Home />} />
+            <Route id="content" path="/profile" element={<Profile />} />
+            <Route id="content" path="/topics" element={<Topics />} />
+          </Route>
+          </Routes>
       </div>
     </AuthContext.Provider>
    
