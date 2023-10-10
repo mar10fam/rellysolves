@@ -20,7 +20,7 @@ const Login = () => {
   });
 
   useEffect(() => {
-      if(user) {
+      if(Object.keys(user).length !== 0) {
         Axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
           headers: {
               Authorization: `Bearer ${user.access_token}`,

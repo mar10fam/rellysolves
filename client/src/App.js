@@ -16,7 +16,7 @@ function App() {
   return (
     <AuthContext.Provider value = {{ user, setUser, profile, setProfile}}>
       <div className="App">  
-      { Object.keys(profile).length !== 0 && <Sidebar /> }            
+      { Object.keys(user).length !== 0 && <Sidebar /> }            
           <Routes>
           <Route path="/login" element={<Login />} />
           <Route element={<PrivateRoute />}>

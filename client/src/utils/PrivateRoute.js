@@ -3,10 +3,10 @@ import { Outlet, Navigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 const PrivateRoute = () => {
-    const { profile } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     return (
-        Object.keys(profile).length !== 0 ? <Outlet /> : <Navigate to='/login' /> 
+        Object.keys(user).length !== 0 ? <Outlet /> : <Navigate to='/login' /> 
     )
 }
 
