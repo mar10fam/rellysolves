@@ -3,11 +3,11 @@
     width: 15vw;
     background-color: #293745;
     color: #ffffff;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
 .sidebar #sidebarTitle {
     font-size: 2em;
+    font-weight: 700;
     text-align: center;
     margin-bottom: 1rem;
     padding: .5rem
@@ -48,4 +48,6 @@
 
 .row #title {
     flex: 70%;
+    font-size: 1.2rem;
+    font-weight: 300;
 }

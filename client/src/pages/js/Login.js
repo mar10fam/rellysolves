@@ -38,9 +38,23 @@ const Login = () => {
     }, [user]);
 
   return (
-    <div>
-      <h2>Google Login</h2>
-      <button onClick={() => login()}>Sign in with Google</button>
+    <div className="loginPage">
+      <div className="loginBody">
+        <p id="title">RellySolves</p>
+        <img id="relly" src="/images/relly1.png" alt="Relly"></img>
+        <p id="rellySpeaks">Hello there! My name's Relly.<br/>Let's practice math together!</p>
+      </div>
+      <div className="loginForm">
+        <div className="loginFormContent">
+          <p id="welcomeText">
+            Welcome to RellySolves<br/>
+            where you can practice numerous math topics.<br/><br/>
+            Let's get you signed in!
+          </p>
+          <button id="loginButton" onClick={() => login()}>Sign in with Google</button>
+        </div>
+        <p id="footer">Created by @mar10fam</p>
+      </div>
     </div>
   )
 }
