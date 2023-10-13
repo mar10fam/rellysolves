@@ -21,9 +21,8 @@ const Sidebar = () => {
                         </li>
                     )
                 })}
-
             </ul>
-            
+        
         </div>
     )
 }

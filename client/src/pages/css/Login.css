@@ -9,8 +9,7 @@
 .loginBody {
     width: 75vw;
     opacity: 85%;
-    background-color: #fff;
-    /*background-image: url(/public/images/loginBody.png);*/
+    background-image: url(/public/images/loginBackground.png);
     background-size: cover;
     background-position: center;
 }
