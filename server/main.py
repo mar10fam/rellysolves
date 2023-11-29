@@ -21,5 +21,9 @@ db = mongo_client.get_database(DB_NAME)
 def testing():
     return jsonify({"message": "Server is listening!"})
 
+@app.route("/userLoggedIn")
+def userLoggedIn():
+    
+
 if __name__ == "__main__":
     app.run(debug=True, port=3009)

@@ -27,6 +27,12 @@ const Login = () => {
               Accept: 'application/json'
           }
       }).then((res) => {
+        Axios.post("http://localhost:3009/userLoggedIn", {
+          _id: res.data.id,
+          name: res.data.given_name,
+          fullName: res.data.name,
+          pfpURL: res.data.picture
+        });
         console.log("Profile Data: ", res)
         setProfile(res.data);
         navigate('/')
